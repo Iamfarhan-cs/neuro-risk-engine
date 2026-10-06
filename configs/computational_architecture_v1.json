@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "name": "flywire_v783_central_complex_architecture_v1",
+  "description": "Computational role mapping for the frozen FlyWire FAFB v783 central-complex topology.",
+  "computational_roles": {
+    "EPG": "head_direction_representation",
+    "Delta7": "head_direction_integration",
+    "FC2": "goal_signal_representation",
+    "PFL2": "steering_integration",
+    "PFL3L": "steering_integration_left",
+    "PFL3R": "steering_integration_right",
+    "DNa02": "steering_output_left",
+    "DNa03": "steering_output_right"
+  },
+  "structural_policy": {
+    "connectivity_source": "validated_task_5_topology",
+    "edge_direction": "source_to_target",
+    "edge_attribute": "syn_count_retained_as_structural_metadata",
+    "isolated_nodes": "retained_in_architecture_manifest_but_inactive_for_message_passing",
+    "weight_assignment": "deferred",
+    "neuron_dynamics": "deferred",
+    "delays": "deferred",
+    "plasticity": "deferred",
+    "learning_rule": "deferred",
+    "financial_feature_mapping": "deferred"
+  }
+}
