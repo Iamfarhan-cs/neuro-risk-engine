@@ -1,78 +1,63 @@
 # Task 6 — Topology-to-Computational Architecture
 
-## Objective
-
-Task 6 converts the validated FlyWire FAFB v783 topology into an explicit computational architecture specification.
-
-The purpose is to define the structural role each biological neuron group will have in the future computational model without yet defining neuron dynamics, trainable weights, learning rules, temporal delays, financial feature encodings, or training procedures.
-
-The biological topology remains frozen.
-
-## Computational role mapping
+## Scientifically corrected role mapping
 
 | Biological group | Computational role |
 |---|---|
 | EPG | head-direction representation |
 | Delta7 | head-direction integration |
 | FC2 | goal-signal representation |
-| PFL2 | steering integration |
+| PFL2 | steering gain modulation |
 | PFL3L | left steering integration |
 | PFL3R | right steering integration |
-| DNa02 | left steering output |
-| DNa03 | right steering output |
+| DNa02 | steering output population |
+| DNa03 | steering intermediate population |
 
-These are architectural abstractions, not claims that the biological circuit implements financial concepts. Financial semantics are deliberately deferred.
+## Lateralization correction
+
+DNa02 and DNa03 are cell types/populations, not intrinsically left and right computational roles. The 2024 steering model explicitly represents right and left copies as DNa02R/DNa02L and DNa03R/DNa03L, while PFL3R/PFL3L are defined by axonal projection hemisphere. Therefore the architecture must not encode DNa02 as left or DNa03 as right.
+If later experiments require hemispheric DNa02/DNa03 units, those copies must be represented explicitly from neuron-level metadata and connectivity rather than inferred from the cell-type label.
+
+## Biological grounding
+
+The selected circuit is a navigation circuit in which EPG activity represents heading, FC2 activity represents a navigational goal, PFL3 compares goal and heading representations, PFL2 modulates steering gain, DNa02 is a downstream steering-output readout, and DNa03 participates in an indirect PFL2/PFL3-to-DNa02 pathway.
+These functions justify the computational architecture only. They do not imply that the biological circuit naturally implements financial-risk concepts.
 
 ## Structural rules
 
 1. Every validated biological node is retained in the architecture manifest.
-2. Active message-passing nodes are the nodes participating in retained edges.
-3. Isolated biological nodes remain represented but are inactive for message passing.
+2. Active message-passing nodes are nodes participating in retained edges.
+3. Isolated biological nodes remain represented but inactive for message passing.
 4. Edge direction is preserved exactly.
 5. Raw syn_count is retained as structural metadata.
-6. No computational weight is assigned yet.
-7. No neuron activation model is assigned yet.
-8. No spike threshold, membrane equation, refractory period, delay, plasticity rule, or learning rule is assigned yet.
+6. No trainable computational weight is assigned yet.
+7. Task 7 supplies a common LIF dynamics model; this is an explicit computational simplification, not a claim that all selected biological neurons have identical dynamics.
+8. No synaptic delay, plasticity, or learning rule is assigned yet.
 9. No financial feature is mapped to a biological population yet.
 10. The topology cannot be modified because of anticipated financial-model performance.
 
-## Why defer weights and dynamics?
+## Connectome threshold caveat
 
-A connectome provides structural connectivity. It does not uniquely specify a machine-learning implementation. Separating topology from dynamics, optimization, and financial representation makes later ablations possible.
+The extraction pipeline currently uses a 5-synapse edge threshold. This is an operational graph-construction rule, not a universal biological definition of a real connection.
+Lin et al. used a five-synapse threshold in whole-brain network analysis and explicitly examined robustness to threshold variation. Other FlyWire analyses show stronger reproducibility for higher-weight edges. Therefore the financial experiment must not treat the 5-synapse graph as uniquely correct.
+The primary frozen topology remains threshold 5. The preregistered robustness analysis must evaluate thresholds 1, 5, 10, and 31. Threshold sensitivity is a robustness analysis, not a mechanism for choosing whichever topology performs best after seeing financial results.
 
-## Output
+## Financial mapping guardrail
 
-The implementation produces computational_architecture.json, recording the architecture schema, exact Task 5 topology SHA-256, node/edge counts, active/isolated counts, role mapping, structural policy, every architecture node, and every structural edge with its original synapse count.
-
-No raw FlyWire dataset is copied into the repository.
-
-## Implementation
-
-Run:
-
-    python -m neuro_risk_engine.architecture \
-      --nodes data/processed/flywire_v783_circuit/nodes.csv \
-      --edges data/processed/flywire_v783_circuit/edges.csv \
-      --manifest data/processed/flywire_v783_circuit/topology_manifest.json
-
-The Task 5 validator runs first. If the topology fails validation, architecture construction stops rather than silently repairing or adapting the graph.
-
-## What Task 6 does not do
-
-Task 6 does not implement an SNN, define neuron dynamics, define spike encoding, define financial input features, define PASS/REVIEW/STEP-UP output semantics, train a model, generate synthetic transactions, benchmark models, randomize topology, or choose topology from financial results.
+Before synthetic financial features are mapped into the architecture, the mapping must be documented and frozen before model comparison.
+It must specify:
+1. financial state variables;
+2. computational abstraction for each variable;
+3. neural populations receiving each variable;
+4. rate/current/spike encoding;
+5. temporal resolution;
+6. normalization;
+7. train/validation/test separation;
+8. whether the same representation is used by all model baselines.
+This prevents the experiment from selecting an input representation after observing which topology performs best.
 
 ## Scientific handoff
 
-The resulting bridge is:
+biological evidence → frozen topology → computational architecture → Task 7 dynamics → future event/spike representation → preregistered synthetic financial task → controlled comparison
 
-    validated biological graph
-            ↓
-    computational architecture
-            ↓
-    [future task] neuron dynamics
-            ↓
-    [future task] event/spike representation
-            ↓
-    [future task] synthetic financial task
-
-> Biology determines the structural topology; the financial experiment evaluates what computational properties that topology provides.
+No financial conclusion can be drawn yet.

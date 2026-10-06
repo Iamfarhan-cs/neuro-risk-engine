@@ -1,16 +1,16 @@
 {
-  "schema_version": 1,
-  "name": "flywire_v783_central_complex_architecture_v1",
-  "description": "Computational role mapping for the frozen FlyWire FAFB v783 central-complex topology.",
+  "schema_version": 2,
+  "name": "flywire_v783_central_complex_architecture_v2",
+  "description": "Computational role mapping for the frozen FlyWire FAFB v783 central-complex topology. Roles are abstractions grounded in navigation literature and do not assign left/right semantics to DNa02 or DNa03 cell types.",
   "computational_roles": {
     "EPG": "head_direction_representation",
     "Delta7": "head_direction_integration",
     "FC2": "goal_signal_representation",
-    "PFL2": "steering_integration",
+    "PFL2": "steering_gain_modulation",
     "PFL3L": "steering_integration_left",
     "PFL3R": "steering_integration_right",
-    "DNa02": "steering_output_left",
-    "DNa03": "steering_output_right"
+    "DNa02": "steering_output_population",
+    "DNa03": "steering_intermediate_population"
   },
   "structural_policy": {
     "connectivity_source": "validated_task_5_topology",
@@ -18,10 +18,38 @@
     "edge_attribute": "syn_count_retained_as_structural_metadata",
     "isolated_nodes": "retained_in_architecture_manifest_but_inactive_for_message_passing",
     "weight_assignment": "deferred",
-    "neuron_dynamics": "deferred",
+    "neuron_dynamics": "task_7_common_lif_dynamics",
     "delays": "deferred",
     "plasticity": "deferred",
     "learning_rule": "deferred",
-    "financial_feature_mapping": "deferred"
-  }
+    "financial_feature_mapping": "deferred_until_preregistered_task_mapping"
+  },
+  "scientific_controls": {
+    "lateralization_rule": "Only cell types explicitly defined by axonal projection are assigned left/right computational roles. DNa02 and DNa03 remain bilateral population types; later hemispheric copies must be represented explicitly if used.",
+    "biological_function_claim": "Roles are computational abstractions supported by navigation literature, not claims that the biological circuit implements financial risk concepts.",
+    "topology_selection_bias": "Financial performance must not alter the frozen biological topology.",
+    "threshold_status": "The 5-synapse extraction threshold is an operational reproducibility choice, not a universal biological cutoff.",
+    "threshold_sensitivity_required": true,
+    "threshold_sensitivity_values": [
+      1,
+      5,
+      10,
+      31
+    ],
+    "financial_mapping_preregistration_required": true
+  },
+  "evidence": [
+    {
+      "topic": "goal_heading_steering",
+      "citation": "Mussells Pires et al., Nature 2024, DOI 10.1038/s41586-023-07006-3"
+    },
+    {
+      "topic": "PFL2_PFL3_DNa02_DNa03_steering",
+      "citation": "Westeinde et al., Nature 2024, DOI 10.1038/s41586-024-07039-2"
+    },
+    {
+      "topic": "connectome_threshold_robustness",
+      "citation": "Lin et al., Nature 2024, DOI 10.1038/s41586-024-07968-y"
+    }
+  ]
 }
