@@ -45,8 +45,6 @@ No real customer financial data or real financial authorization decisions are us
 5. Connectome-inspired / Fly-SNN
 6. Random-topology SNN
 
-The critical controlled comparison is Fly-inspired topology versus randomized topology while controlling relevant model capacity and experimental conditions.
-
 ## Planned metrics
 
 - Precision
@@ -67,11 +65,29 @@ The project distinguishes:
 - **Prior expectation:** reasoning informed by existing knowledge before measurement.
 - **Measured result:** an outcome obtained from the defined experiment.
 
-The Fly-SNN must not be presented as superior before experiments are performed. XGBoost, MLP, generic SNN, Fly-SNN, or random topology may win, or the Fly-SNN may trade predictive accuracy for efficiency or robustness.
+The Fly-SNN must not be presented as superior before experiments are performed.
 
 ## Reproducibility
 
-Experiments will use explicit configurations, documented preprocessing, controlled comparisons, deterministic seeds where appropriate, and recorded evaluation results.
+Experiments use explicit configurations, documented preprocessing, controlled comparisons, deterministic seeds where appropriate, and recorded evaluation results.
+
+### Local setup
+
+Use Python 3.13 or newer:
+
+```text
+python -m venv .venv
+python -m pip install -e .
+python -m pytest -q
+```
+
+For the Task 7 LIF CLI:
+
+```text
+python -m neuro_risk_engine.neuron_dynamics --input 0.2 0.2 0.2 1.5 0.0
+```
+
+GitHub Actions validates installation, tests, and source compilation on pushes and pull requests targeting `development`.
 
 ## Safety and sandbox scope
 
@@ -83,6 +99,6 @@ This is a research/sandbox project.
 
 ## Current status
 
-**Task 1 — Foundation:** complete.
+**Tasks 1–7:** complete and audited.
 
-Later tasks will introduce synthetic financial data, conventional baselines, SNNs, connectome topology, controlled topology experiments, and evaluation. Those experiments are not implemented in Task 1.
+The project is now ready to proceed to the next research task, while remaining strictly experimental and synthetic.
