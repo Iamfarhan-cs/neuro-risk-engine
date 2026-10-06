@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "model": "discrete_time_leaky_integrate_and_fire",
+  "parameters": {
+    "tau_membrane": 20,
+    "threshold": 1,
+    "reset": 0,
+    "resting_potential": 0,
+    "dt": 1,
+    "refractory_steps": 2
+  },
+  "scientific_status": {
+    "parameter_source": "initial computational defaults",
+    "biological_parameter_claim": false,
+    "financial_semantics": "deferred"
+  }
+}
