@@ -9,5 +9,12 @@ description = "Research sandbox for connectome-inspired spiking neural architect
 requires-python = ">=3.13"
 dependencies = []
 
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]

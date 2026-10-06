@@ -1,0 +1,32 @@
+{
+  "dataset": {
+    "name": "FlyWire FAFB",
+    "version": "v783",
+    "organism": "adult female Drosophila melanogaster",
+    "source": "https://codex.flywire.ai/?dataset=fafb",
+    "connectivity_release": "https://doi.org/10.5281/zenodo.10676866"
+  },
+  "selection": {
+    "strategy": "literature-defined neuron-type-defined central-complex goal-directed steering pathway",
+    "synapse_threshold": 5,
+    "exclude_self_loops": true,
+    "retain_isolated_nodes_in_manifest": true,
+    "active_graph_excludes_isolated_nodes": true,
+    "aggregate_across_neuropils": true,
+    "random_seed": null,
+    "literature": [
+      {"title": "Transforming a head direction signal into a goal-oriented steering command", "doi": "10.1038/s41586-024-07039-2"},
+      {"title": "Converting an allocentric goal into an egocentric steering signal", "doi": "10.1038/s41586-023-07006-3"}
+    ],
+    "cell_type_groups": {
+      "EPG": ["EPG"],
+      "Delta7": ["Delta7", "Delta7-", "Δ7", "Delta7A", "Delta7B", "Delta7C"],
+      "FC2": ["FC2", "FC2A", "FC2B", "FC2C"],
+      "PFL2": ["PFL2"],
+      "PFL3L": ["PFL3L", "PFL3_L", "PFL3 left", "PFL3-left"],
+      "PFL3R": ["PFL3R", "PFL3_R", "PFL3 right", "PFL3-right"],
+      "DNa02": ["DNa02"],
+      "DNa03": ["DNa03"]
+    }
+  }
+}
