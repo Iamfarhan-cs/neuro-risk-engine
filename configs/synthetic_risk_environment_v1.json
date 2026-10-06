@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "task": 9,
+  "environment": "synthetic_financial_risk",
+  "seed": 42,
+  "decisions": ["PASS", "REVIEW", "STEP-UP"],
+  "features": [
+    {"name": "amount", "type": "continuous", "unit": "synthetic_currency"},
+    {"name": "account_age_days", "type": "integer", "unit": "days"},
+    {"name": "transaction_velocity_24h", "type": "integer", "unit": "events"},
+    {"name": "merchant_risk", "type": "continuous", "range": [0.0, 1.0]},
+    {"name": "geo_distance_km", "type": "continuous", "unit": "km"},
+    {"name": "device_novelty", "type": "continuous", "range": [0.0, 1.0]},
+    {"name": "failed_attempts_24h", "type": "integer", "unit": "events"},
+    {"name": "hour_sin", "type": "continuous", "range": [-1.0, 1.0]},
+    {"name": "hour_cos", "type": "continuous", "range": [-1.0, 1.0]}
+  ],
+  "target": "decision",
+  "label_generation": {
+    "method": "latent_risk_score_thresholds",
+    "thresholds": {"PASS": "< 0.33", "REVIEW": ">= 0.33 and < 0.66", "STEP-UP": ">= 0.66"},
+    "latent_score_is_not_a_model_feature": true
+  },
+  "reproducibility": {"generator": "python_random", "seed_required": true},
+  "scope": {"synthetic_only": true, "real_customer_data": false, "production_authorization": false, "automatic_account_action": false}
+}
